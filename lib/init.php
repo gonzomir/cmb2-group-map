@@ -235,20 +235,17 @@ class CMB2_Group_Map {
 
 		$cpt = get_post_type_object( $field['post_type_map'] );
 
-		// Add a hidden ID field to the group to store the referenced object id.
+		/*
+		 * Add a hidden ID field to the group to store the referenced object id.
+		 * To work around https://github.com/CMB2/CMB2/issues/1188 use type text
+		 * and add the hidden type throu attributes, then hide the row with hidden class.
+		 */
 		$cmb->add_group_field( $field['id'], array(
-			'id'              => self::object_id_key( $field['object_type_map'] ),
-			'type'            => 'post_search_text',
-			'post_type'       => $field['post_type_map'],
-			'select_type'     => 'radio',
-			'select_behavior' => 'replace',
-			'row_classes'     => 'hidden cmb2-group-map-id',
-			'options'         => array(
-				'find_text' => $cpt->labels->search_items,
-			),
+			'id'   => self::object_id_key( $field['object_type_map'] ),
+			'type' => 'text',
+			'classes' => 'hidden',
 			'attributes' => array(
-				'class' => 'regular-text cmb2-group-map-data',
-				'title' => sprintf( self::$strings['item_id'], $cpt->labels->singular_name ),
+				'type' => 'hidden',
 			),
 		) );
 

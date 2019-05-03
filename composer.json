@@ -14,8 +14,7 @@
     "homepage": "http://zao.is",
     "type": "wordpress-plugin",
     "require": {
-        "php": ">5.2.4",
-        "webdevstudios/cmb2-post-search-field": "dev-master"
+        "php": ">5.2.4"
     },
     "suggest": {
         "composer/installers": "~1.0"
