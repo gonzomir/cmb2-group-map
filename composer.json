@@ -1,7 +1,7 @@
 {
     "name": "zao-web/cmb2-group-map",
     "description": "Allows using a custom post type for a CMB2 Group data store.",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "zao",
@@ -10,11 +10,18 @@
             "role": "Developer"
         }
     ],
-    "keywords": ["wordpress", "plugin", "metabox","search","field","CMB2"],
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "metabox",
+        "search",
+        "field",
+        "CMB2"
+    ],
     "homepage": "http://zao.is",
     "type": "wordpress-plugin",
     "require": {
-        "php": ">5.2.4"
+        "php": ">5.6"
     },
     "suggest": {
         "composer/installers": "~1.0"
