@@ -204,6 +204,16 @@ class CMB2_Group_Map_Get extends CMB2_Group_Map_Base {
 	 * @return array                 Array of values for the group.
 	 */
 	public function set_sub_field_value( $nooverride, $object_id, $args, CMB2_Field $subfield ) {
+		// Bail if not on a group subfield.
+		if ( ! $subfield->group ) {
+			return $nooverride;
+		}
+
+		// Bail if called for field from another group.
+		if( $this->group_field->id() !== $subfield->group->id() ) {
+			return $nooverride;
+		}
+
 		$field_id = $subfield->id( true );
 
 		if (
