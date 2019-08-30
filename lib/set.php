@@ -92,7 +92,7 @@ class CMB2_Group_Map_Set extends CMB2_Group_Map_Base {
 			$data = $this->set_default_data( $data );
 		}
 
-		return apply_filters( 'cmb2_group_map_set_object_data', $data, $this );
+		return apply_filters( 'cmb2_group_map_set_object_data', $data, $this, $unclean );
 	}
 
 	/**
@@ -254,7 +254,11 @@ class CMB2_Group_Map_Set extends CMB2_Group_Map_Base {
 				break;
 
 			default:
-				if ( isset( $data['ID'] ) && $data['ID'] && get_post( $data['ID'] ) ) {
+				if ( ! empty( $data['ID'] ) && get_post( $data['ID'] ) ) {
+					if ( ! current_user_can( 'edit_post', $data['ID'] ) ) {
+						$updated = get_post( $data['ID'] );
+						break;
+					}
 					$updated = wp_update_post( $data );
 				}
 				break;

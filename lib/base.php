@@ -106,6 +106,9 @@ abstract class CMB2_Group_Map_Base {
 			case 'user':
 				return wp_delete_user( $object_id );
 			default:
+				if ( ! current_user_can( 'delete_post', $object_id ) ) {
+					return false;
+				}
 				return wp_delete_post( $object_id, $force_delete );
 		}
 	}
