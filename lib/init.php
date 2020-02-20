@@ -391,18 +391,20 @@ class CMB2_Group_Map {
 		$dependencies['cmb2_group_map'] = 'cmb2_group_map';
 		$assets_url = $this->get_url_from_dir( CMB2_GROUP_POST_MAP_DIR ) . 'lib/assets/';
 
-		wp_register_script(
-			'cmb2_group_map',
-			$assets_url . 'js/cmb2-group-map.js',
-			array( 'jquery', 'wp-backbone' ),
-			self::VERSION,
-			1
-		);
+		if ( apply_filters( 'cmb2_group_map_delete_on_dettach', true ) ) {
+			wp_register_script(
+				'cmb2_group_map',
+				$assets_url . 'js/cmb2-group-map.js',
+				array( 'jquery', 'wp-backbone' ),
+				self::VERSION,
+				1
+			);
 
-		wp_localize_script( 'cmb2_group_map', 'CMB2Mapl10n', array(
-			'ajaxurl' => admin_url( 'admin-ajax.php', 'relative' ),
-			'strings' => self::$strings,
-		) );
+			wp_localize_script( 'cmb2_group_map', 'CMB2Mapl10n', array(
+				'ajaxurl' => admin_url( 'admin-ajax.php', 'relative' ),
+				'strings' => self::$strings,
+			) );
+		}
 
 		wp_enqueue_style(
 			'cmb2_group_map',
