@@ -84,6 +84,9 @@ abstract class CMB2_Group_Map_Base {
 			case 'user':
 				return get_user_by( 'id', $object_id );
 			default:
+				if ( ! current_user_can( 'edit_post', $object_id ) ) {
+					return false;
+				}
 				return get_post( $object_id );
 		}
 	}
@@ -95,7 +98,7 @@ abstract class CMB2_Group_Map_Base {
 	 *
 	 * @param  int   $object_id Object ID
 	 *
-	 * @return mixed            Object instance if successful
+	 * @return mixed Object instance if successful
 	 */
 	public function delete_object( $object_id, $force_delete = true ) {
 		switch ( $this->object_type() ) {
