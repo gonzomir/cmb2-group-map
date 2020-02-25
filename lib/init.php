@@ -388,10 +388,11 @@ class CMB2_Group_Map {
 	 * @return array $dependencies Modified array of script dependencies
 	 */
 	public function register_js( $dependencies ) {
-		$dependencies['cmb2_group_map'] = 'cmb2_group_map';
 		$assets_url = $this->get_url_from_dir( CMB2_GROUP_POST_MAP_DIR ) . 'lib/assets/';
 
 		if ( apply_filters( 'cmb2_group_map_delete_on_dettach', true ) ) {
+			$dependencies['cmb2_group_map'] = 'cmb2_group_map';
+
 			wp_register_script(
 				'cmb2_group_map',
 				$assets_url . 'js/cmb2-group-map.js',
