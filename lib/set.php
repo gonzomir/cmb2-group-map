@@ -256,7 +256,7 @@ class CMB2_Group_Map_Set extends CMB2_Group_Map_Base {
 			default:
 				if ( ! empty( $data['ID'] ) && get_post( $data['ID'] ) ) {
 					if ( ! current_user_can( 'edit_post', $data['ID'] ) ) {
-						$updated = get_post( $data['ID'] );
+						$updated = $data['ID'];
 						break;
 					}
 					$updated = wp_update_post( $data );
